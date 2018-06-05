@@ -1,23 +1,22 @@
 package com.bookstore.Controller;
 
 import com.bookstore.Entity.Cart;
-import com.bookstore.Repository.CartRepository;
+import com.bookstore.Service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
 public class CartController {
     @Autowired
-    private CartRepository cartRepository;
+    private CartService cartService;
 
     @GetMapping("/CartManager")
     @ResponseBody
     public List<Cart> getCart()
     {
-        List<Cart> res = cartRepository.findCartsByUser(1);
+        List<Cart> res = cartService.findCartsByUser(1);
         return res;
     }
 
@@ -27,33 +26,14 @@ public class CartController {
     {
         if(operation.equals("add"))
         {
-            List<Cart> res = cartRepository.findCartsByUser(1);
-            Iterator<Cart> it = res.iterator();
-            boolean exist = false;
-            while(it.hasNext())
+            if(!cartService.addExistingBook(book))
             {
-                Cart cart = it.next();
-                if(book.equals(cart.getBook()))
-                {
-                    exist = true;
-                    int number = cart.getNumber() + 1;
-                    cart.setNumber(number);
-                    cartRepository.save(cart);
-                }
-            }
-            if(!exist)
-            {
-                Cart newcart = new Cart();
-                newcart.setUser(userid);
-                newcart.setBook(book);
-                newcart.setPrice(price);
-                newcart.setNumber(1);
-                cartRepository.save(newcart);
+                cartService.addNewBook(userid, book, price, 1);
             }
         }
         else if(operation.equals("removeall"))
         {
-            cartRepository.deleteAll();
+            cartService.deleteAll();
         }
         else
         {
