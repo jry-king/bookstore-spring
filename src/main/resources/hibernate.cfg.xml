@@ -22,5 +22,7 @@
         <mapping class="com.bookstore.Entity.Book"/>
         <mapping class="com.bookstore.Entity.User"/>
         <mapping class="com.bookstore.Entity.Cart"/>
+        <mapping class="com.bookstore.Entity.Order"/>
+        <mapping class="com.bookstore.Entity.OrderItem"/>
     </session-factory>
 </hibernate-configuration>
