@@ -12,9 +12,17 @@ public class OrderItemController {
     @Autowired
     private OrderItemService orderItemService;
 
+    @GetMapping("/OrderItemManager")
+    @ResponseBody
+    public List<OrderItem> getItem(@RequestParam("orderid")Long orderid)
+    {
+        List<OrderItem> result = orderItemService.findOrderItemsByOrderid(orderid);
+        return result;
+    }
+
     @PostMapping("/OrderItemManager")
     @ResponseBody
-    public String addItem(@RequestParam("orderid")int orderid, @RequestParam("book")String book, @RequestParam("price")double price, @RequestParam("number")int number)
+    public String addItem(@RequestParam("orderid")Long orderid, @RequestParam("book")String book, @RequestParam("price")double price, @RequestParam("number")int number)
     {
         orderItemService.addNewItem(orderid, book, price, number);
         return "success";

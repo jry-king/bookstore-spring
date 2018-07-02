@@ -14,7 +14,15 @@ public class UserController {
 
     @GetMapping("/UserManager")
     @ResponseBody
-    public List<User> getBook()
+    public User getUser(Long userid)
+    {
+        User res = userService.findUserById(userid);
+        return res;
+    }
+
+    @GetMapping("/UserManager1")
+    @ResponseBody
+    public List<User> getAllUser()
     {
         List<User> res = userService.findAll();
         return res;

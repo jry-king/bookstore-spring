@@ -12,6 +12,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @GetMapping("/OrderManager")
+    @ResponseBody
+    public List<Order> getOrder()
+    {
+        List<Order> result = orderService.findAll();
+        return result;
+    }
+
     @PostMapping("/OrderManager")
     @ResponseBody
     public String addOrder(@RequestParam("userid")int userid, @RequestParam("date")String date, @RequestParam("totalprice")double totalprice)

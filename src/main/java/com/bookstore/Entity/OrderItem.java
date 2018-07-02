@@ -12,7 +12,7 @@ public class OrderItem
     private Long id;
 
     @Column(name="orderid")
-    private int orderid;
+    private Long orderid;
 
     @Column(name="book")
     private String book;
@@ -29,9 +29,9 @@ public class OrderItem
 
     public void setId(Long id) { this.id = id; }
 
-    public int getOrderId() { return orderid; }
+    public Long getOrderId() { return orderid; }
 
-    public void setOrderId(int orderid) { this.orderid = orderid; }
+    public void setOrderId(Long orderid) { this.orderid = orderid; }
 
     public String getBook() {
         return book;

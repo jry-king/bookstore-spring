@@ -1,4 +1,4 @@
-package com.bookstore.ServiceImpl;
+package com.bookstore.ServiceImplement;
 
 import com.bookstore.Entity.User;
 import com.bookstore.Repository.UserRepository;
@@ -13,9 +13,11 @@ public class UserServiceImplement implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll()
+    public List<User> findAll() { return userRepository.findAll(); }
+
+    public User findUserById(Long userid)
     {
-        return userRepository.findAll();
+        return userRepository.findUserById(userid);
     }
 
     public void addNewUser(String username, String password, String email, String phone)

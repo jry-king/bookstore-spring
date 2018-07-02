@@ -1,4 +1,4 @@
-package com.bookstore.ServiceImpl;
+package com.bookstore.ServiceImplement;
 
 import com.bookstore.Entity.OrderItem;
 import com.bookstore.Repository.OrderItemRepository;
@@ -18,7 +18,7 @@ public class OrderItemServiceImplement implements OrderItemService{
         return orderItemRepository.findOrderItemsByOrderid(orderid);
     }
 
-    public void addNewItem(int orderid, String book, double price, int number)
+    public void addNewItem(Long orderid, String book, double price, int number)
     {
         OrderItem neworderitem = new OrderItem();
         neworderitem.setOrderId(orderid);
